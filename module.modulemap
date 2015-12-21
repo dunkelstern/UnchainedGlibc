@@ -39,7 +39,7 @@ module UnchainedGlibc [system] {
 
     // glibc specific
     module features {
-      header "Headers/features.h"
+      textual header "Headers/features.h"
       export *
     }
 
