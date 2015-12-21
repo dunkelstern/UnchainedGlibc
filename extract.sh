@@ -6,5 +6,6 @@ for header in $headers ; do
 	# create umbrella header
 	echo "#include \"$header\"" >> Headers/glibc-umbrella.h
 done
+echo "#include \"/usr/include/bsd/bsd.h\"" >> Headers/glibc-umbrella.h
 clang -E "Headers/glibc-umbrella.h" -o "Headers/umbrella.h" -D_GNU_SOURCE
 

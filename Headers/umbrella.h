@@ -12816,3 +12816,381 @@ extern int wordexp (const char *__restrict __words,
 extern void wordfree (wordexp_t *__wordexp) __attribute__ ((__nothrow__ ));
 # 71 "Headers/glibc-umbrella.h" 2
 
+
+# 1 "/usr/include/errno.h" 1
+# 74 "Headers/glibc-umbrella.h" 2
+# 106 "Headers/glibc-umbrella.h"
+# 1 "/usr/include/poll.h" 1
+# 107 "Headers/glibc-umbrella.h" 2
+# 132 "Headers/glibc-umbrella.h"
+# 1 "/usr/include/syslog.h" 1
+# 133 "Headers/glibc-umbrella.h" 2
+
+
+
+
+
+
+# 1 "/usr/include/wait.h" 1
+# 140 "Headers/glibc-umbrella.h" 2
+
+# 1 "/usr/include/bsd/bsd.h" 1
+# 34 "/usr/include/bsd/bsd.h"
+# 1 "/usr/include/bsd/sys/cdefs.h" 1 3 4
+# 35 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/sys/queue.h" 1 3 4
+# 36 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/sys/tree.h" 1 3 4
+# 37 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/netinet/ip_icmp.h" 1 3 4
+# 38 "/usr/include/bsd/netinet/ip_icmp.h" 3 4
+# 1 "/usr/include/netinet/in_systm.h" 1 3 4
+# 34 "/usr/include/netinet/in_systm.h" 3 4
+typedef u_int16_t n_short;
+typedef u_int32_t n_long;
+typedef u_int32_t n_time;
+# 39 "/usr/include/bsd/netinet/ip_icmp.h" 2 3 4
+# 1 "/usr/include/netinet/ip.h" 1 3 4
+# 28 "/usr/include/netinet/ip.h" 3 4
+struct timestamp
+  {
+    u_int8_t len;
+    u_int8_t ptr;
+
+    unsigned int flags:4;
+    unsigned int overflow:4;
+
+
+
+
+
+
+    u_int32_t data[9];
+  };
+
+struct iphdr
+  {
+
+    unsigned int ihl:4;
+    unsigned int version:4;
+
+
+
+
+
+
+    u_int8_t tos;
+    u_int16_t tot_len;
+    u_int16_t id;
+    u_int16_t frag_off;
+    u_int8_t ttl;
+    u_int8_t protocol;
+    u_int16_t check;
+    u_int32_t saddr;
+    u_int32_t daddr;
+
+  };
+# 107 "/usr/include/netinet/ip.h" 3 4
+struct ip
+  {
+
+    unsigned int ip_hl:4;
+    unsigned int ip_v:4;
+
+
+
+
+
+    u_int8_t ip_tos;
+    u_short ip_len;
+    u_short ip_id;
+    u_short ip_off;
+
+
+
+
+    u_int8_t ip_ttl;
+    u_int8_t ip_p;
+    u_short ip_sum;
+    struct in_addr ip_src, ip_dst;
+  };
+
+
+
+
+struct ip_timestamp
+  {
+    u_int8_t ipt_code;
+    u_int8_t ipt_len;
+    u_int8_t ipt_ptr;
+
+    unsigned int ipt_flg:4;
+    unsigned int ipt_oflw:4;
+
+
+
+
+
+    u_int32_t data[9];
+  };
+# 40 "/usr/include/bsd/netinet/ip_icmp.h" 2 3 4
+# 49 "/usr/include/bsd/netinet/ip_icmp.h" 3 4
+struct icmp_ra_addr {
+ u_int32_t ira_addr;
+ u_int32_t ira_preference;
+};
+
+
+
+
+struct icmp {
+ u_char icmp_type;
+ u_char icmp_code;
+ u_short icmp_cksum;
+ union {
+  u_char ih_pptr;
+  struct in_addr ih_gwaddr;
+  struct ih_idseq {
+   n_short icd_id;
+   n_short icd_seq;
+  } ih_idseq;
+  int ih_void;
+
+
+  struct ih_pmtu {
+   n_short ipm_void;
+   n_short ipm_nextmtu;
+  } ih_pmtu;
+
+  struct ih_rtradv {
+   u_char irt_num_addrs;
+   u_char irt_wpa;
+   u_int16_t irt_lifetime;
+  } ih_rtradv;
+ } icmp_hun;
+# 92 "/usr/include/bsd/netinet/ip_icmp.h" 3 4
+ union {
+  struct id_ts {
+   n_time its_otime;
+   n_time its_rtime;
+   n_time its_ttime;
+  } id_ts;
+  struct id_ip {
+   struct ip idi_ip;
+
+  } id_ip;
+  struct icmp_ra_addr id_radv;
+  u_int32_t id_mask;
+  char id_data[1];
+ } icmp_dun;
+
+
+
+
+
+
+
+};
+# 38 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/stdlib.h" 1 3 4
+# 39 "/usr/include/bsd/stdlib.h" 3 4
+# 1 "/usr/include/bsd/libutil.h" 1 3 4
+# 45 "/usr/include/bsd/libutil.h" 3 4
+# 1 "/usr/lib/llvm-3.6/bin/../lib/clang/3.6.2/include/stdint.h" 1 3 4
+# 46 "/usr/include/bsd/libutil.h" 2 3 4
+
+
+
+struct pidfh {
+ int pf_fd;
+ char *pf_path;
+ dev_t pf_dev;
+ ino_t pf_ino;
+};
+
+
+int humanize_number(char *buf, size_t len, int64_t bytes,
+    const char *suffix, int scale, int flags);
+int expand_number(const char *_buf, uint64_t *_num);
+
+int flopen(const char *_path, int _flags, ...);
+
+struct pidfh *pidfile_open(const char *path, mode_t mode, pid_t *pidptr);
+int pidfile_write(struct pidfh *pfh);
+int pidfile_close(struct pidfh *pfh);
+int pidfile_remove(struct pidfh *pfh);
+
+char *fparseln(FILE *, size_t *, size_t *, const char[3], int);
+# 40 "/usr/include/bsd/stdlib.h" 2 3 4
+
+
+
+
+
+
+
+# 1 "/usr/lib/llvm-3.6/bin/../lib/clang/3.6.2/include/stdint.h" 1 3 4
+# 48 "/usr/include/bsd/stdlib.h" 2 3 4
+
+
+u_int32_t arc4random();
+void arc4random_stir();
+void arc4random_addrandom(u_char *dat, int datlen);
+void arc4random_buf(void *_buf, size_t n);
+u_int32_t arc4random_uniform(u_int32_t upper_bound);
+
+int dehumanize_number(const char *str, int64_t *size);
+
+const char *getprogname(void);
+void setprogname(const char *);
+
+int heapsort (void *, size_t, size_t, int (*)(const void *, const void *));
+int mergesort(void *base, size_t nmemb, size_t size,
+              int (*cmp)(const void *, const void *));
+int radixsort(const unsigned char **base, int nmemb,
+              const unsigned char *table, unsigned endbyte);
+int sradixsort(const unsigned char **base, int nmemb,
+               const unsigned char *table, unsigned endbyte);
+
+void *reallocf(void *ptr, size_t size);
+void *reallocarray(void *ptr, size_t nmemb, size_t size);
+
+long long strtonum(const char *nptr, long long minval, long long maxval,
+                   const char **errstr);
+
+char *getbsize(int *headerlenp, long *blocksizep);
+# 39 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/string.h" 1 3 4
+# 40 "/usr/include/bsd/string.h" 3 4
+size_t strlcpy(char *dst, const char *src, size_t siz);
+size_t strlcat(char *dst, const char *src, size_t siz);
+char *strnstr(const char *str, const char *find, size_t str_len);
+void strmode(mode_t mode, char *str);
+# 40 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/err.h" 1 3 4
+# 31 "/usr/include/bsd/err.h" 3 4
+# 1 "/usr/include/err.h" 1 3 4
+# 34 "/usr/include/err.h" 3 4
+extern void warn (const char *__format, ...)
+     __attribute__ ((__format__ (__printf__, 1, 2)));
+extern void vwarn (const char *__format, __gnuc_va_list)
+     __attribute__ ((__format__ (__printf__, 1, 0)));
+
+
+extern void warnx (const char *__format, ...)
+     __attribute__ ((__format__ (__printf__, 1, 2)));
+extern void vwarnx (const char *__format, __gnuc_va_list)
+     __attribute__ ((__format__ (__printf__, 1, 0)));
+
+
+extern void err (int __status, const char *__format, ...)
+     __attribute__ ((__noreturn__, __format__ (__printf__, 2, 3)));
+extern void verr (int __status, const char *__format, __gnuc_va_list)
+     __attribute__ ((__noreturn__, __format__ (__printf__, 2, 0)));
+extern void errx (int __status, const char *__format, ...)
+     __attribute__ ((__noreturn__, __format__ (__printf__, 2, 3)));
+extern void verrx (int __status, const char *, __gnuc_va_list)
+     __attribute__ ((__noreturn__, __format__ (__printf__, 2, 0)));
+# 32 "/usr/include/bsd/err.h" 2 3 4
+# 42 "/usr/include/bsd/err.h" 3 4
+extern void warnc (int code, const char *format, ...);
+extern void vwarnc (int code, const char *format, va_list ap);
+extern void errc (int status, int code, const char *format, ...);
+extern void verrc (int status, int code, const char *format, va_list ap);
+# 41 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/getopt.h" 1 3 4
+# 31 "/usr/include/bsd/getopt.h" 3 4
+# 1 "/usr/include/getopt.h" 1 3 4
+# 57 "/usr/include/getopt.h" 3 4
+extern char *optarg;
+# 71 "/usr/include/getopt.h" 3 4
+extern int optind;
+
+
+
+
+extern int opterr;
+
+
+
+extern int optopt;
+# 104 "/usr/include/getopt.h" 3 4
+struct option
+{
+  const char *name;
+
+
+  int has_arg;
+  int *flag;
+  int val;
+};
+# 150 "/usr/include/getopt.h" 3 4
+extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
+       __attribute__ ((__nothrow__ ));
+# 173 "/usr/include/getopt.h" 3 4
+extern int getopt_long (int ___argc, char *const *___argv,
+   const char *__shortopts,
+          const struct option *__longopts, int *__longind)
+       __attribute__ ((__nothrow__ ));
+extern int getopt_long_only (int ___argc, char *const *___argv,
+        const char *__shortopts,
+               const struct option *__longopts, int *__longind)
+       __attribute__ ((__nothrow__ ));
+# 32 "/usr/include/bsd/getopt.h" 2 3 4
+# 1 "/usr/include/bsd/unistd.h" 1 3 4
+# 45 "/usr/include/bsd/unistd.h" 3 4
+extern int optreset;
+
+
+
+
+
+
+int bsd_getopt(int argc, char * const argv[], const char *shortopts);
+
+mode_t getmode(const void *set, mode_t mode);
+void *setmode(const char *mode_str);
+
+void closefrom(int lowfd);
+
+
+
+
+void setproctitle_init(int argc, char *argv[], char *envp[]);
+void setproctitle(const char *fmt, ...);
+
+int getpeereid(int s, uid_t *euid, gid_t *egid);
+# 33 "/usr/include/bsd/getopt.h" 2 3 4
+# 42 "/usr/include/bsd/bsd.h" 2
+# 1 "/usr/include/bsd/md5.h" 1 3 4
+# 22 "/usr/include/bsd/md5.h" 3 4
+typedef struct MD5Context {
+ u_int32_t state[4];
+ u_int64_t count;
+ u_int8_t buffer[64];
+} MD5_CTX;
+
+
+
+
+void MD5Init(MD5_CTX *);
+void MD5Update(MD5_CTX *, const u_int8_t *, size_t)
+  __attribute__(());
+void MD5Pad(MD5_CTX *);
+void MD5Final(u_int8_t [16], MD5_CTX *)
+  __attribute__(());
+void MD5Transform(u_int32_t [4], const u_int8_t [64])
+  __attribute__(())
+  __attribute__(());
+char *MD5End(MD5_CTX *, char *)
+  __attribute__(());
+char *MD5File(const char *, char *)
+  __attribute__(());
+char *MD5FileChunk(const char *, char *, off_t, off_t)
+  __attribute__(());
+char *MD5Data(const u_int8_t *, size_t, char *)
+  __attribute__(())
+  __attribute__(());
+# 43 "/usr/include/bsd/bsd.h" 2
+# 142 "Headers/glibc-umbrella.h" 2
+
