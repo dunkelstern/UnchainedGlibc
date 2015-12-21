@@ -8,4 +8,4 @@ for header in $headers ; do
 done
 
 
-sed -e 's/\(.*header "\)\([^"]*\)"/\1Headers\2/' module.modulemap.in > module.modulemap
+sed -e 's/\(.*header "\)\([^"]*\)"/\1Headers\2"/' module.modulemap.in > module.modulemap
