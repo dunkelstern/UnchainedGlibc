@@ -125,7 +125,7 @@ module UnchainedGlibc [system] {
     // }
     
     module time {
-      header "/usr/include/time.h"
+      header "Headers/time.h"
       export *
     }
   }
