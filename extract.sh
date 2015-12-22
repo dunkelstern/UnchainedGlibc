@@ -12,4 +12,5 @@ done
 
 # add libbsd header to the mix (arc4random!)
 echo "#include \"/usr/include/bsd/bsd.h\"" >> Headers/glibc-umbrella.h
+echo "#include \"/usr/include/x86_64-linux-gnu/sys/types.h\"" >> Headers/glibc-umbrella.h
 

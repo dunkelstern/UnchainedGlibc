@@ -70,3 +70,4 @@
 #include "/usr/include/wait.h"
 #include "/usr/include/wordexp.h"
 #include "/usr/include/bsd/bsd.h"
+#include "/usr/include/x86_64-linux-gnu/sys/types.h"
