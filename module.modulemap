@@ -22,5 +22,5 @@ module UnchainedGlibc [system] {
   link "pthread"
   link "dl"
 
-  header "Headers/umbrella.h"
+  header "Headers/glibc-umbrella.h"
 }

@@ -9,7 +9,7 @@ Prominent examples:
 - `strptime`
 - `lrand48`
 
-So this is a very evil hack to get a glibc module that has all API defined. It collects all header files from the original Swift Glibc module and creates an umbrella header that is preprocessed with clang (with defined `_GNU_SOURCE`). The resulting header is used as the single header in the modulemap.
+So this is a very evil hack to get a glibc module that has all API defined. It collects all header files from the original Swift Glibc module and creates an umbrella header that has `define _GNU_SOURCE` prepended. The resulting header is used as the single header in the modulemap.
 
 Additionally the `libbsd` headers are added to the mix (`arc4random` is in `Darwin` but not in `SwiftGlibc`, so we fix that too)
 
